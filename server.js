@@ -1,8 +1,10 @@
-// Minimal fixture app for the P2 rollback probe ("good" candidate).
-// No dependencies, no build step -- just Node's built-in http module.
+// Same server as good-app, for reference/diff purposes. This file is never
+// actually reached by Docker: the build fails at `RUN false` before COPY's
+// contents matter for anything except making the diff between good/bad
+// obviously small.
 const http = require("http");
 
-const VERSION = process.env.PROBE_VERSION || "good-v1";
+const VERSION = process.env.PROBE_VERSION || "bad-v1";
 const port = process.env.PORT || 3000;
 
 http
